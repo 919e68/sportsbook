@@ -72,6 +72,14 @@ WHERE
   AND Events.statusId IN (1, 2, 4) 
   AND Events.sportId = 1
   AND BettingOffers.offerCount > 0
-  -- AND EventInfos.infoCount > 0
+GROUP BY
+  Leagues.id,
+  LeagueLocation.id,
+  Sports.id,
+  Events.startTime,
+  LeagueLocation.name,
+  Leagues.name,
+  Home.homeTeamName,
+  Away.awayTeamName
 ORDER BY
   Events.startTime ASC
