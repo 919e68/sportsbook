@@ -69,7 +69,6 @@ FROM
   ) AS Away ON Away.eventId = Events.id
 WHERE
   DATEADD(MILLISECOND, Events.deleteTimeOffset, Events.startTime) >= GETUTCDATE() AND
-  Events.isComplete = 1 AND
   Events.typeId = 1
   AND Events.statusId IN (1, 2, 4) 
   AND Events.sportId = 1
