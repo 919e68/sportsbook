@@ -27,7 +27,6 @@ FROM
       BettingOfferStatuses ON BettingOffers.statusId = BettingOfferStatuses.id LEFT JOIN
       Outcomes ON BettingOffers.outcomeId = Outcomes.id
     WHERE
-      Outcomes.isComplete = 1 AND
       BettingOfferStatuses.isAvailable = 1 AND
       BettingOffers.providerId = 3000343
     GROUP BY
