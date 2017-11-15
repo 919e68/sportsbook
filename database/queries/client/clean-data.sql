@@ -4,7 +4,7 @@ TRUNCATE TABLE bett
 TRUNCATE TABLE bett_game
 TRUNCATE TABLE bett_game_adj
 TRUNCATE TABLE bett_game_count
-TRUNCATE TABLE bett_token
+-- TRUNCATE TABLE bett_token
 
 
 -- FOR V3 database

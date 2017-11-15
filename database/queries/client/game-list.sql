@@ -28,7 +28,7 @@ WHERE
 	bett.bt_status IN (1, 2, 5) AND
 	bett_game.bg_status IN (1, 2, 5) AND
 	bett_game.be_index IN (3, 4, 5, 6)
-	AND bett.bt_stime >= DATEADD(HOUR, -3, GETUTCDATE())
+	AND bett.bt_stime >= DATEADD(HOUR, -3, GETDATE())
 	AND bett.bt_stime < '2017-11-11 15:00:00'
 GROUP BY
 	bett_game.bt_group_seq,
