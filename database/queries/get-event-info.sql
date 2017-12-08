@@ -1,6 +1,45 @@
 
-DECLARE @eventId BIGINT = 2767934115704832
-SELECT * FROM Events WHERE id = @eventId
+DECLARE @eventId BIGINT = 1204573096407040
+--------------------------------------------------------------------------------
+SELECT
+  Events.id AS [eventId],
+  DATEADD(HOUR, 9, Events.startTime),
+  Leagues.name AS [leagueName],
+  Sports.name AS [sportsName],
+  Home.homeTeamName,
+  Away.awayTeamName,
+  Events.parentId,
+  Events.statusId
+FROM
+  Events LEFT JOIN
+  Sports ON Sports.id = Events.sportId LEFT JOIN
+  Events Leagues ON Leagues.id = Events.parentId LEFT JOIN
+    (
+    SELECT
+        EventParticipantRelations.eventId,
+        Participants.id AS homeTeamId,
+        Participants.name AS homeTeamName
+    FROM
+        EventParticipantRelations LEFT JOIN
+        Participants ON Participants.id = EventParticipantRelations.participantId
+    WHERE
+        EventParticipantRelations.participantRoleId = 1
+    ) AS Home ON Home.eventId = Events.id LEFT JOIN
+    (
+    SELECT
+        EventParticipantRelations.eventId,
+        Participants.id AS awayTeamId,
+        Participants.name AS awayTeamName
+    FROM
+        EventParticipantRelations LEFT JOIN
+        Participants ON Participants.id = EventParticipantRelations.participantId
+    WHERE
+        EventParticipantRelations.participantRoleId = 2
+    ) AS Away ON Away.eventId = Events.id
+WHERE
+   Events.id = @eventId
+
+--------------------------------------------------------------------------------
 SELECT
 	EventInfos.id,
 
@@ -35,6 +74,12 @@ SELECT
 			END
 		ELSE NULL
     END AS bt_score_away,
+
+	CASE
+		WHEN EventInfos.typeId = 95 THEN EventInfos.paramFloat1
+		ELSE NULL
+  END AS match_time,
+
 	ParamEventPart.name AS [event_part],
 	ParamEventStatus.name AS [event_status]
 FROM
@@ -72,7 +117,8 @@ WHERE
 	AND EventInfos.eventId = @eventId
 	AND (
 		(EventInfos.typeId = 1 AND EventParts.name IN ('Whole Match', '1st Half (Ordinary Time)')) OR
-		(EventInfos.typeId = 92)
+		(EventInfos.typeId = 92) OR
+		(EventInfos.typeId = 95)
 	)
 ORDER BY
 	EventInfos.updatedAt ASC

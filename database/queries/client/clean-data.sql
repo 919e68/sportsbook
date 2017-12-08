@@ -8,7 +8,7 @@ TRUNCATE TABLE bett_game_count
 
 
 -- FOR V3 database
-DELETE FROM bett_league
-DELETE FROM bett WHERE bt_type IN (1, 2, 3, 4)
+DELETE FROM bett WHERE bt_type IN (1,2,3,4)
 DELETE FROM bett_game
+DELETE FROM bett_league
 DELETE FROM bett_game_count
