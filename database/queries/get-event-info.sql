@@ -1,5 +1,5 @@
 
-DECLARE @eventId BIGINT = 1204573096407040
+DECLARE @eventId BIGINT = 2397386476646400
 --------------------------------------------------------------------------------
 SELECT
   Events.id AS [eventId],
@@ -52,6 +52,7 @@ SELECT
 	CASE
 		WHEN EventInfos.typeId = 1 THEN 'score'
 		WHEN EventInfos.typeId = 92 THEN 'status'
+    WHEN EventInfos.typeId = 95 THEN 'match-time'
 		ELSE NULL
 	END AS [data_type],
 

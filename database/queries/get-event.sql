@@ -1,10 +1,10 @@
-DECLARE @eventId BIGINT = 1318157660876800
+DECLARE @eventId BIGINT = 2397386476646400
 
-SELECT 
+SELECT
   Events.id AS [eventId],
   Events.startTime,
   Leagues.name AS [leagueName],
-  Sports.name AS [sportsName],   
+  Sports.name AS [sportsName],
   Home.homeTeamName,
   Away.awayTeamName,
   Events.parentId
