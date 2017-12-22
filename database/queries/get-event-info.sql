@@ -1,9 +1,9 @@
 
-DECLARE @eventId BIGINT = 2397386476646400
+DECLARE @eventId BIGINT = 2745120996356096
 --------------------------------------------------------------------------------
 SELECT
   Events.id AS [eventId],
-  DATEADD(HOUR, 9, Events.startTime),
+  DATEADD(HOUR, 9, Events.startTime) AS startTime,
   Leagues.name AS [leagueName],
   Sports.name AS [sportsName],
   Home.homeTeamName,
